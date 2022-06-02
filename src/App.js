@@ -5,9 +5,9 @@ import Navbar from "./components/Navbar/Navbar";
 import Container from "./components/Container/Container";
 import RightNavbar from "./components/RightNavbar/RightNavbar";
 import Dashboard from "./components/Dashboard/Dashboard";
+import 'bootstrap/dist/css/bootstrap.min.css'
 import Analytics from "./components/Analytics/Analytics";
-import Campaings from "./components/Campaigns/Campaings";
-import Team from "./components/Team/Team";
+
 
 import NavContext from "./Context/NavContext";
 function App() {
@@ -25,9 +25,7 @@ function App() {
               <Route path="*" element={<main>NOT FOUND</main>} />
               <Route path="/" element={<Dashboard />} />
               <Route path="/analytics" element={<Analytics />} />
-              <Route path="/campaings" element={<Campaings />} />
-              <Route path="/team" element={<Team />} />
-              <Route path="/messages" element={<main>Messages</main>} />
+              
             </Routes>
           }
         />

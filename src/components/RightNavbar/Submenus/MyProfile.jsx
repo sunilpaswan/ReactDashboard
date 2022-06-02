@@ -30,7 +30,7 @@ const MyProfile = () => {
 
       {/* NAME */}
       <div className={styles.name}>
-        <span>WebDesign</span>
+        <span>Sunil </span>
         <MdKeyboardArrowDown />
       </div>
 
@@ -39,7 +39,7 @@ const MyProfile = () => {
         className={`${styles.menu} ${isProfileOpen ? styles.menu_active : ""}`}
       >
         <div className={styles.info}>
-          <span className={styles.name}>WebDesign</span>
+          <span className={styles.name}>Sunil Paswan</span>
           <span className={styles.role}>Adminstrator</span>
         </div>
         <div className={styles.settings}>

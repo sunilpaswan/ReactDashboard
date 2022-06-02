@@ -1,83 +1,71 @@
-import styles from "./Dashboard.module.scss";
-import Spline from "./Charts/Spline";
-import Columns from "./Charts/Columns";
-import Pie from "./Charts/Pie";
-import Activity from "./Charts/Activity";
-import Income from "./Charts/Income";
+import React, { useEffect,useState } from 'react'
+import CreateTask from './CreateTask';
+import Card from "./Card"
 
-import People1 from "../../pics/people1.jpg";
-import People2 from "../../pics/people2.jpg";
-import People3 from "../../pics/people3.jpg";
-import People4 from "../../pics/people4.jpg";
 
-import { AiOutlinePlus } from "react-icons/ai";
-import { MdOutlineWavingHand } from "react-icons/md";
-import { GoPlus } from "react-icons/go";
+
 const Dashboard = () => {
+  const [modal, setModal] = useState(false);
+  const [taskList, setTaskList] = useState([])
+  
+  useEffect(() => {
+      let arr = localStorage.getItem("taskList")
+     
+      if(arr){
+          let obj = JSON.parse(arr)
+          setTaskList(obj)
+      }
+  }, [])
+
+
+  const deleteTask = (index) => {
+      let tempList = taskList
+      tempList.splice(index, 1)
+      localStorage.setItem("taskList", JSON.stringify(tempList))
+      setTaskList(tempList)
+      window.location.reload()
+  }
+
+  const updateListArray = (obj, index) => {
+      let tempList = taskList
+      tempList[index] = obj
+      localStorage.setItem("taskList", JSON.stringify(tempList))
+      setTaskList(tempList)
+      window.location.reload()
+  }
+
+  const toggle = () => {
+      setModal(!modal);
+  }
+
+  const saveTask = (taskObj) => {
+      let tempList = taskList
+      tempList.push(taskObj)
+      localStorage.setItem("taskList", JSON.stringify(tempList))
+      setTaskList(taskList)
+      setModal(false)
+  }
+
   return (
-    <main className={styles.container}>
-      <div className={styles.welcome}>
-        <h1>
-          Good afternoon , WebDesign.
-          <MdOutlineWavingHand />
-        </h1>
-        <p>Here is what’s happening with your projects today:</p>
-      </div>
-      <div className={styles.calendar}>
-        <div className={styles.people}>
-          <div className={styles.img_container}>
-            <img src={People1} alt="people" />
-          </div>
-          <div className={styles.img_container}>
-            <img src={People2} alt="people" />
-          </div>
-          <div className={styles.img_container}>
-            <img src={People3} alt="people" />
-          </div>
-          <div className={styles.img_container}>
-            <img src={People4} alt="people" />
-          </div>
-          <div className={styles.img_container}>
-            <AiOutlinePlus />
-          </div>
-        </div>
-        <div className={styles.options}>
-          <button>
-            Add view <GoPlus />
-          </button>
-        </div>
-      </div>
-      <div className={styles.charts}>
-        <div className={styles.lines}>
-          <Spline title="Program Plus" sales="45,234" percentage="1.8" />
-        </div>
+    <>
+    <div  
+    style={{height:"100px", paddingLeft: "5rem", paddingTop: "3rem", background:"#e8ebed" }} >
+    <button type="button" class="btn btn-success" 
+    style={{background: "rgb(11, 179, 11)"}}
+    onClick = {()=> setModal(true)}>Add New Schedule</button>
+      <input 
+       style={{float: "right", paddingRight: "2rem", marginRight: "5rem", border: "none", borderRadius: "0.80rem",
+    background: "e8ebed"}}
+        type="text" placeholder="    Search Your Schedule.."></input>
+      
+    </div>
+    <div className = "task-container">
+            {taskList && taskList.map((obj , index) => <Card taskObj = {obj} index = {index} deleteTask = {deleteTask} updateListArray = {updateListArray}/> )}
+            </div>
+            <CreateTask toggle = {toggle} modal = {modal} save = {saveTask}/>
+            
+    </>
+  )
+}
 
-        <div className={styles.lines}>
-          <Spline title="Program Advanced" sales="51,274" percentage="-1.2" />
-        </div>
-
-        <div className={styles.lines}>
-          <Spline title="Program Professional" sales="15,430" percentage="15" />
-        </div>
-
-        <div className={styles.columns}>
-          <Columns />
-        </div>
-
-        <div className={styles.pie}>
-          <Pie />
-        </div>
-
-        <div className={styles.activity}>
-          <Activity />
-        </div>
-
-        <div className={styles.income}>
-          <Income />
-        </div>
-      </div>
-    </main>
-  );
-};
-
-export default Dashboard;
+export default Dashboard

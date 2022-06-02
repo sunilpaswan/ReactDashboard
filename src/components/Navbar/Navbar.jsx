@@ -9,17 +9,19 @@ import NavContext from "../../Context/NavContext";
 import { NavLink } from "react-router-dom";
 
 //ICONS
-import {
-  MdOutlineDashboard,
-  MdOutlineAnalytics,
-  MdOutlinedFlag,
-  MdPeopleOutline,
-  MdOutlineMessage,
+import { CgChart } from "react-icons/cg";
+import { FaClipboard } from "react-icons/fa";
+import {RiTeamLine} from "react-icons/ri";
+import {GiNotebook} from "react-icons/gi";
+import {BiCalendar} from "react-icons/bi";
+import {FcComboChart} from "react-icons/fc";
+import {AiOutlineSetting} from "react-icons/ai";
+import { 
   MdOutlineLogout,
 } from "react-icons/md";
-import { IoMdLogIn } from "react-icons/io";
-import { FaReact, FaTimes } from "react-icons/fa";
-import { BsThreeDots } from "react-icons/bs";
+
+
+
 import { VscDashboard } from "react-icons/vsc";
 
 const NavUrl = ({ url, icon, description }) => {
@@ -55,56 +57,58 @@ const Navbar = () => {
         {/* LOGO */}
         <div className={styles.logo}>
           <VscDashboard className={styles.logo_icon} />
-          <FaTimes
-            className={styles.mobile_cancel_icon}
-            onClick={() => {
-              setNav(!nav);
-            }}
-          />
+          
+          
+          <h5>Logobrand</h5>
         </div>
 
         {/* MENU */}
         <ul className={styles.menu_container}>
           {/* FIRST CATEGORY */}
-          <span className={styles.categories}>
-            {nav ? "Pages" : <BsThreeDots />}
-          </span>
+          
 
           <NavUrl
             url="/"
-            icon={<MdOutlineDashboard />}
+            icon={<CgChart />}
             description="Dashboard"
           />
           <NavUrl
-            url="analytics"
-            icon={<MdOutlineAnalytics />}
-            description="Analytics"
+            url="Analytics"
+            icon={<FaClipboard />}
+            description="TacticsVault"
           />
           <NavUrl
-            url="campaings"
-            icon={<MdOutlinedFlag />}
-            description="Campaings"
+            url="Teams"
+            icon={<RiTeamLine />}
+            description="Teams"
           />
-          <NavUrl url="team" icon={<MdPeopleOutline />} description="Team" />
+         
 
           <NavUrl
-            url="messages"
-            icon={<MdOutlineMessage />}
-            description="Messages"
+            url="ScheduleGenerator"
+            icon={<GiNotebook />}
+            description="Schedule Generator"
           />
 
+          <NavUrl
+            url="WeeklyTraningPlans"
+            icon={<BiCalendar />}
+            description="Weekly Traning Plans"
+          />
+           <NavUrl url="TeamsMetrics" icon={<FcComboChart />} description="TeamsMetrics" />
+          <NavUrl url="Customizations" icon={<AiOutlineSetting />} description="Customizations" />
+        </ul>
+
+        
           {/* SECOND CATEGORY */}
-          <span className={`${styles.categories} ${styles.second_category}`}>
-            {nav ? "More" : <BsThreeDots />}
+          <span
+            className={`${styles.categories} 
+          ${styles.second_category}`}
+          >
+           <p>Select Your Teams</p>
           </span>
 
-          <NavUrl
-            url="other1"
-            icon={<IoMdLogIn />}
-            description="Authentication"
-          />
-          <NavUrl url="other2" icon={<FaReact />} description="ReactJs" />
-        </ul>
+          <button class="btn btn-light">Teams Name </button>
 
         {/* LOGOUT BUTTON */}
         <div

@@ -1,10 +1,10 @@
 .navbar_container {
-    --color_nav_bg: rgb(30, 41, 59);
+    --color_nav_bg: rgb(11, 179, 11);
     --color_nav_txt: rgb(100, 116, 139);
     --color_nav_ctg: rgb(226, 232, 240);
     --color_nav_active: rgb(85, 79, 232);
     --color_nav_not_active: rgb(61, 74, 94);
-    --color_nav_active_bg: rgb(15, 23, 42);
+    --color_nav_active_bg: rgba(233, 236, 236, 0.473);
     --nav_width: 16rem;
 
     background: var(--color_nav_bg);

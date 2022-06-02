@@ -32,7 +32,7 @@ const Analytics = () => {
   return (
     <main>
       <div className={styles.title}>
-        <h1>Analytics</h1>
+        <h1>Chart Data</h1>
         <WiStars />
       </div>
       <div className={styles.container}>
